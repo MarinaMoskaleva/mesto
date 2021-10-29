@@ -1,0 +1,10 @@
+.popup__field{
+    width: 100%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1.2;
+    color: #000000;
+    border: none;
+    margin-bottom: 7px;
+}
