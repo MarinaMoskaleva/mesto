@@ -1,23 +1,6 @@
 .element__image{
   width: 100%;
-  height: auto;
+  height: 282px;
   border-radius: 10px 10px 0 0;
+  object-fit: cover;
 }
-
-/* @media screen and (max-width: 1279px) {
-  .places{
-    margin: 0 48px;
-  }
-}
-
-@media screen and (max-width: 1023px) {
-  .places{
-    margin: 0 24px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .places{
-    margin: 0;
-  }
-} */

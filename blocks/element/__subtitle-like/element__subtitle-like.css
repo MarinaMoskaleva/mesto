@@ -14,8 +14,3 @@
 .element__subtitle-like:hover{
   opacity: 0.5;
 }
-
-.element__subtitle-like:active{
-  opacity: 1;
-  background-image: url(../../../images/likeActive.svg);
-}

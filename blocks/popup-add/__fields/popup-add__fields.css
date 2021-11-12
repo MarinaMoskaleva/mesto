@@ -1,0 +1,11 @@
+.popup-add__fields{
+    display: flex;
+    flex-direction: column;
+    margin: 41px 36px 37px;
+}
+
+@media screen and (max-width: 767px){
+    .popup-add__fields {
+        margin: 75px 22px 25px;
+    }
+}

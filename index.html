@@ -26,63 +26,51 @@
         <button class="profile__add-button" type="button" aria-label="Add"></button>
       </section>
       <section class="elements">
-        <article class="element">
-          <img src="images/kirill-pershin-1088404-unsplash.jpg" alt = "Карачаевск" class="element__image">
-          <div class="element__subtitle">
-            <h2 class="element__subtitle-text">Карачаевск</h2>
-            <button class="element__subtitle-like" type="button" aria-label="Like"></button>
+        <template id = "element-template">
+          <div class="element">
+            <button class="element__trash-button" type="button" aria-label="Trash"></button>
+            <img class="element__image">
+            <div class="element__subtitle">
+              <h2 class="element__subtitle-text"></h2>
+              <button class="element__subtitle-like" type="button" aria-label="Like"></button>
+            </div>
           </div>
-        </article>
-        <article class="element">
-          <img src="images/kirill-pershin-1404681-unsplash.jpg" alt = "Гора Эльбрус" class="element__image">
-          <div class="element__subtitle">
-            <h2 class="element__subtitle-text">Гора Эльбрус</h2>
-            <button class="element__subtitle-like" type="button" aria-label="Like"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="images/kirill-pershin-1556355-unsplash.jpg" alt = "Домбай" class="element__image">
-          <div class="element__subtitle">
-            <h2 class="element__subtitle-text">Домбай</h2>
-            <button class="element__subtitle-like" type="button" aria-label="Like"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="images/kirill-pershin-1404681-unsplash.jpg" alt = "Гора Эльбрус" class="element__image">
-          <div class="element__subtitle">
-            <h2 class="element__subtitle-text">Гора Эльбрус</h2>
-            <button class="element__subtitle-like" type="button" aria-label="Like"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="images/kirill-pershin-1556355-unsplash.jpg" alt = "Домбай" class="element__image">
-          <div class="element__subtitle">
-            <h2 class="element__subtitle-text">Домбай</h2>
-            <button class="element__subtitle-like" type="button" aria-label="Like"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="images/kirill-pershin-1088404-unsplash.jpg" alt = "Карачаевск" class="element__image">
-          <div class="element__subtitle">
-            <h2 class="element__subtitle-text">Карачаево-Черкессия</h2>
-            <button class="element__subtitle-like" type="button" aria-label="Like"></button>
-          </div>
-        </article>
+        </template>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
-    <div class="popup">
-      <div class="popup__container">
-        <button class="popup__close-button" type="button" aria-label="Close"></button>
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__fields" name="edit-form">
-          <input type="text" class="popup__field popup__field_content_name" name="popup-name" required placeholder="Введите имя">
-          <input type="text" class="popup__field popup__field_content_description" name="popup-description" required placeholder="Введите описание">
-          <button class="popup__save-button" type="submit">Сохранить</button>
+    <div class="popup-edit">
+      <div class="popup-edit__container">
+        <button class="popup-edit__close-button" type="button" aria-label="Close"></button>
+        <h2 class="popup-edit__title">Редактировать профиль</h2>
+        <form class="popup-edit__fields" name="edit-form">
+          <input type="text" class="popup-edit__field popup-edit__field_content_name" name="popup-edit-name" required placeholder="Введите имя">
+          <input type="text" class="popup-edit__field popup-edit__field_content_description" name="popup-edit-description" required placeholder="Введите описание">
+          <button class="popup-edit__save-button" type="submit">Сохранить</button>
         </form>
       </div>
+    </div>
+    <div class="popup-add">
+      <div class="popup-add__container">
+        <button class="popup-add__close-button" type="button" aria-label="Close"></button>
+        <h2 class="popup-add__title">Новое место</h2>
+        <form class="popup-add__fields" name="add-form">
+          <input type="text" class="popup-add__field popup-add__field_content_name" name="popup-add-name" required placeholder="Название">
+          <input type="text" class="popup-add__field popup-add__field_content_url" name="popup-add-url" required placeholder="Ссылка на картинку">
+          <button class="popup-add__create-button" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup-image">
+      <form class="popup-image__container">
+        <button class="popup-image__close-button" type="button" aria-label="Close"></button>
+        <template id = "template-popup-image__image">
+          <img class="popup-image__image">
+          <p class="popup-image__caption"></p>
+        </template>
+      </form>
     </div>
   </div>
   <script src="scripts/script.js"></script>
