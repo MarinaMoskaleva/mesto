@@ -130,7 +130,6 @@ function formAddSubmitHandler(evt) {
 }
 
 //---------------------------------------Обработчики
-
 editButton.addEventListener('click', openPopupEdit);
 editCloseButton.addEventListener('click', closePopupEdit);
 
