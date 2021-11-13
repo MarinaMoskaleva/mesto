@@ -41,7 +41,7 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
-    <div class="popup-edit">
+    <div class="popup popup-edit">
       <div class="popup-edit__container">
         <button class="popup-edit__close-button" type="button" aria-label="Close"></button>
         <h2 class="popup-edit__title">Редактировать профиль</h2>
@@ -52,7 +52,7 @@
         </form>
       </div>
     </div>
-    <div class="popup-add">
+    <div class="popup popup-add">
       <div class="popup-add__container">
         <button class="popup-add__close-button" type="button" aria-label="Close"></button>
         <h2 class="popup-add__title">Новое место</h2>
@@ -63,13 +63,11 @@
         </form>
       </div>
     </div>
-    <div class="popup-image">
+    <div class="popup popup-image">
       <form class="popup-image__container">
         <button class="popup-image__close-button" type="button" aria-label="Close"></button>
-        <template id = "template-popup-image__image">
-          <img class="popup-image__image">
-          <p class="popup-image__caption"></p>
-        </template>
+        <img class="popup-image__image" src = "#" alt = "Полноразмерное изображение">
+        <p class="popup-image__caption"></p>
       </form>
     </div>
   </div>
