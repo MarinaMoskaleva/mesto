@@ -1,9 +1,8 @@
 //-------------------------------------------Переменные
 const elementTemplate = document.querySelector('#element-template').content;
 const elements = document.querySelector('.elements');
-const content = document.querySelector('.content');
-const editButton = content.querySelector('.profile__info-edit-button');
-const addButton = content.querySelector('.profile__add-button');
+const editButton = document.querySelector('.profile__info-edit-button');
+const addButton = document.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__info-name-current');
 const description = document.querySelector('.profile__info-description');
 
@@ -12,12 +11,14 @@ const editCloseButton = popupEdit.querySelector('.popup-edit__close-button');
 const popupEditName = popupEdit.querySelector('.popup__input_type_name');
 const popupEditDescription = popupEdit.querySelector('.popup__input_type_description');
 const formEditElement = popupEdit.querySelector('.popup__form');
+const popupEditButton = popupEdit.querySelector('.popup__button');
 
 const popupAdd = document.querySelector('.popup-add');
 const popupAddImageTitle = popupAdd.querySelector('.popup__input_type_title');
 const popupAddImageUrl = popupAdd.querySelector('.popup__input_type_url');
 const addCloseButton = popupAdd.querySelector('.popup-add__close-button');
 const formAddElement = popupAdd.querySelector('.popup__form');
+const popupAddButton = popupAdd.querySelector('.popup__button');
 
 const popupImage = document.querySelector('.popup-image');
 const popupImageImage = popupImage.querySelector('.popup-image__image');
@@ -34,24 +35,33 @@ const validationSettings = {
 };
 
 //---------------------------------------------Функции
+function closeByEscape(evt){
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  }
+}
+
 function openPopup(popup){
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 
 function closePopup(popup){
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
 
 function openPopupEdit(){
   popupEditName.value = profileName.textContent;
   popupEditDescription.value = description.textContent;
-  enableValidation(validationSettings);
+  popupEditButton.classList.remove('popup__button_disabled');
   openPopup(popupEdit);
 }
 
 function openPopupAdd(){
   formAddElement.reset();
-  enableValidation(validationSettings);
+  popupAddButton.classList.add('popup__button_disabled');
   openPopup(popupAdd);
 }
 
@@ -100,14 +110,14 @@ const renderElement = (data, container, option) => {
   } 
 };
 
-function formEditSubmitHandler(evt) {
+function submitEditFormHandler(evt) {
   evt.preventDefault();
   profileName.textContent = popupEditName.value;
   description.textContent = popupEditDescription.value;
   closePopup(popupEdit);
 }
 
-function formAddSubmitHandler(evt) {
+function submitAddFormHandler(evt) {
   evt.preventDefault();
   const newCardLink = popupAddImageUrl.value;
   const newCardName = popupAddImageTitle.value;
@@ -124,9 +134,9 @@ addCloseButton.addEventListener('click', () => closePopup(popupAdd));
 
 imageCloseButton.addEventListener('click', () => closePopup(popupImage));
 
-formEditElement.addEventListener('submit', formEditSubmitHandler);
+formEditElement.addEventListener('submit', submitEditFormHandler);
 
-formAddElement.addEventListener('submit', formAddSubmitHandler);
+formAddElement.addEventListener('submit', submitAddFormHandler);
 
 document.onclick = function(e){
   if ( e.target.classList.contains('popup')) {
@@ -134,18 +144,9 @@ document.onclick = function(e){
     closePopup(popup);
   }
 };
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    const popup = document.querySelector('.popup_opened');
-    if (popup) {
-      closePopup(popup);
-    }
-  }
-});
-
-
 //----------------------------------------Начальные данные
 initialCards.forEach(card => {
   renderElement(card,elements,'append');
 });
+
+enableValidation(validationSettings);

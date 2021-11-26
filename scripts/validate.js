@@ -48,13 +48,6 @@ const enableValidation = (config) => {
   const {formSelector, ...newObj} = config;
   const formList = Array.from(document.querySelectorAll(formSelector));
   formList.forEach((formElement) => {
-    // const newObj = {
-    //   inputSelector,
-    //   submitButtonSelector,
-    //   inactiveButtonClass,
-    //   inputErrorClass,
-    //   errorClass
-    // }
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
