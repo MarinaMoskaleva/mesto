@@ -11,19 +11,27 @@ const popupEdit = document.querySelector('.popup-edit');
 const editCloseButton = popupEdit.querySelector('.popup-edit__close-button');
 const popupEditName = popupEdit.querySelector('.popup-edit__field_content_name');
 const popupEditDescription = popupEdit.querySelector('.popup-edit__field_content_description');
-const formEditElement = popupEdit.querySelector('.popup-edit__fields');
+const formEditElement = popupEdit.querySelector('.popup__form');
 
 const popupAdd = document.querySelector('.popup-add');
 const popupAddImageName = popupAdd.querySelector('.popup-add__field_content_name');
 const popupAddImageUrl = popupAdd.querySelector('.popup-add__field_content_url');
 const addCloseButton = popupAdd.querySelector('.popup-add__close-button');
-const formAddElement = popupAdd.querySelector('.popup-add__fields');
+const formAddElement = popupAdd.querySelector('.popup__form');
 
 const popupImage = document.querySelector('.popup-image');
 const popupImageImage = popupImage.querySelector('.popup-image__image');
 const popupImageCaption = popupImage.querySelector('.popup-image__caption');
 const imageCloseButton = popupImage.querySelector('.popup-image__close-button');
 
+const validationSettings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
 
 //---------------------------------------------Функции
 function openPopup(popup){
@@ -37,11 +45,13 @@ function closePopup(popup){
 function openPopupEdit(){
   popupEditName.value = profileName.textContent;
   popupEditDescription.value = description.textContent;
+  enableValidation(validationSettings);
   openPopup(popupEdit);
 }
 
 function openPopupAdd(){
   formAddElement.reset();
+  enableValidation(validationSettings);
   openPopup(popupAdd);
 }
 
@@ -117,6 +127,23 @@ imageCloseButton.addEventListener('click', () => closePopup(popupImage));
 formEditElement.addEventListener('submit', formEditSubmitHandler);
 
 formAddElement.addEventListener('submit', formAddSubmitHandler);
+
+document.onclick = function(e){
+  if ( e.target.classList.contains('popup')) {
+    const popup = e.target;
+    closePopup(popup);
+  }
+};
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    if (popup) {
+      closePopup(popup);
+    }
+  }
+});
+
 
 //----------------------------------------Начальные данные
 initialCards.forEach(card => {
