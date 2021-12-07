@@ -6,6 +6,8 @@ export class FormValidator {
         this._inputErrorClass = data.inputErrorClass;
         this._errorClass = data.errorClass;
         this._formElement = formElement;
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
     }
 
     _showInputError(inputElement) {
@@ -30,25 +32,24 @@ export class FormValidator {
         }
     }
     
-    _hasInvalidInput(inputList) {
-        return inputList.some((inputElement) => {
+    _hasInvalidInput() {
+        return this._inputList.some((inputElement) => {
           return !inputElement.validity.valid;
         })
     }
       
-    _toggleButtonState(inputList, buttonElement) {
-        const isFormInvalid = this._hasInvalidInput(inputList);
-        buttonElement.classList.toggle(this._inactiveButtonClass, isFormInvalid);
+    toggleButtonState() {
+        const isFormInvalid = this._hasInvalidInput(this._inputList);
+        this._submitButton.disabled = isFormInvalid;
+        this._submitButton.classList.toggle(this._inactiveButtonClass, isFormInvalid);
     }
 
     _setEventListeners() {
-      const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-      const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-      this._toggleButtonState(inputList, buttonElement);
-      inputList.forEach((inputElement) => {
+      this.toggleButtonState();
+      this._inputList.forEach((inputElement) => {
           inputElement.addEventListener('input', () => {
               this._isValid(inputElement);
-              this._toggleButtonState(inputList, buttonElement);
+              this.toggleButtonState();
             });
         });
     }
@@ -59,4 +60,12 @@ export class FormValidator {
         });
         this._setEventListeners();
     };
+
+    clearValidationErrors() {
+        this._inputList.forEach((inputElement) => {
+            if (inputElement.classList.contains(this._inputErrorClass)) {
+                this._hideInputError(inputElement);
+            }
+        });
+    }
 }

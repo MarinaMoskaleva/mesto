@@ -1,13 +1,19 @@
+import {popupImage} from './popups.js';
+
 export class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, openPrewPic) {
         this._link = data.link;
         this._name = data.name;
         this._cardSelector = cardSelector;
+        this._popupImage = popupImage;
+        this._openPrewPic = function (popup) {
+            openPrewPic(popup);
+        }
     }
     
     _getTemplate() {
         const cardElement = document
-        .querySelector('#element-template')
+        .querySelector(this._cardSelector)
         .content
         .querySelector('.element')
         .cloneNode(true);
@@ -17,6 +23,7 @@ export class Card {
 
     _handleTrashButtonClick(){
         this._element.remove();
+        this._element = null;
     }
 
     _handleLikeButtonClick(){
@@ -27,14 +34,11 @@ export class Card {
     }
 
     _handlePreviewPicture(){
-        const prewPic = document
-        .querySelector('.popup-image');
-        
-        prewPic.querySelector('.popup-image__image').src = this._link;
-        prewPic.querySelector('.popup-image__image').alt = this._name;
-        prewPic.querySelector('.popup-image__caption').textContent = this._name;
+        this._popupImage.querySelector('.popup-image__image').src = this._link;
+        this._popupImage.querySelector('.popup-image__image').alt = this._name;
+        this._popupImage.querySelector('.popup-image__caption').textContent = this._name;
 
-        prewPic.classList.add('popup_opened');
+        this._openPrewPic(this._popupImage);
     }
 
     _setEventListeners() {
