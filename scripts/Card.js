@@ -5,9 +5,6 @@ export class Card {
         this._link = data.link;
         this._name = data.name;
         this._cardSelector = cardSelector;
-        // this._openPrewPic = function (popup) {
-        //     openPrewPic(popup);
-        // }
         this._openPrewPic = openPrewPic;
     }
     
