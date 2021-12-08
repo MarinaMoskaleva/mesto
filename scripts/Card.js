@@ -5,10 +5,10 @@ export class Card {
         this._link = data.link;
         this._name = data.name;
         this._cardSelector = cardSelector;
-        this._popupImage = popupImage;
-        this._openPrewPic = function (popup) {
-            openPrewPic(popup);
-        }
+        // this._openPrewPic = function (popup) {
+        //     openPrewPic(popup);
+        // }
+        this._openPrewPic = openPrewPic;
     }
     
     _getTemplate() {
@@ -34,11 +34,11 @@ export class Card {
     }
 
     _handlePreviewPicture(){
-        this._popupImage.querySelector('.popup-image__image').src = this._link;
-        this._popupImage.querySelector('.popup-image__image').alt = this._name;
-        this._popupImage.querySelector('.popup-image__caption').textContent = this._name;
+        popupImage.querySelector('.popup-image__image').src = this._link;
+        popupImage.querySelector('.popup-image__image').alt = this._name;
+        popupImage.querySelector('.popup-image__caption').textContent = this._name;
 
-        this._openPrewPic(this._popupImage);
+        this._openPrewPic(popupImage);
     }
 
     _setEventListeners() {
