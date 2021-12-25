@@ -1,13 +1,15 @@
-export class FormValidator {
-    constructor(data, formElement) {
+export default class FormValidator {
+    constructor(data, formSelector) {
+        console.log('валидация',formSelector);
         this._inputSelector = data.inputSelector;
         this._submitButtonSelector = data.submitButtonSelector;
         this._inactiveButtonClass = data.inactiveButtonClass;
         this._inputErrorClass = data.inputErrorClass;
         this._errorClass = data.errorClass;
-        this._formElement = formElement;
+        this._formElement = document.querySelector(formSelector);
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
+        this.toggleButtonState = this.toggleButtonState.bind(this);
     }
 
     _showInputError(inputElement) {
@@ -34,7 +36,7 @@ export class FormValidator {
     
     _hasInvalidInput() {
         return this._inputList.some((inputElement) => {
-          return !inputElement.validity.valid;
+            return !inputElement.validity.valid;
         })
     }
       
@@ -42,6 +44,7 @@ export class FormValidator {
         const isFormInvalid = this._hasInvalidInput(this._inputList);
         this._submitButton.disabled = isFormInvalid;
         this._submitButton.classList.toggle(this._inactiveButtonClass, isFormInvalid);
+        console.log(isFormInvalid);
     }
 
     _setEventListeners() {

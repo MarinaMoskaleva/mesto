@@ -1,11 +1,9 @@
-import {popupImage} from './popups.js';
-
-export class Card {
-    constructor(data, cardSelector, openPrewPic) {
+export default class Card {
+    constructor(data, cardSelector, handleCardClick) {
         this._link = data.link;
         this._name = data.name;
         this._cardSelector = cardSelector;
-        this._openPrewPic = openPrewPic;
+        this._handleCardClick = handleCardClick;
     }
     
     _getTemplate() {
@@ -29,15 +27,7 @@ export class Card {
         .classList
         .toggle('element__subtitle-like_active');
     }
-
-    _handlePreviewPicture(){
-        popupImage.querySelector('.popup-image__image').src = this._link;
-        popupImage.querySelector('.popup-image__image').alt = this._name;
-        popupImage.querySelector('.popup-image__caption').textContent = this._name;
-
-        this._openPrewPic(popupImage);
-    }
-
+    
     _setEventListeners() {
         this._element.querySelector('.element__trash-button').addEventListener('click', () => {
             this._handleTrashButtonClick();
@@ -48,7 +38,7 @@ export class Card {
         });
 
         this._element.querySelector('.element__image').addEventListener('click', () => {
-            this._handlePreviewPicture();
+            this._handleCardClick();
         });
     }
     

@@ -24,3 +24,15 @@ export const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
+export const cardListSection = '.elements';
+
+export const validationSettings = {
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+export const editButton = document.querySelector('.profile__info-edit-button');
+export const addButton = document.querySelector('.profile__add-button');
