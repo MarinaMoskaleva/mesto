@@ -10,18 +10,19 @@ import {
   cardListSection,
   validationSettings,
   editButton,
-  addButton
+  addButton,
+  userName,
+  userDesc
 } from '../utils/constants.js';
 
 import './index.css';
 
-const user = new UserInfo({nameSelector:'.profile__info-name-current', descSelector:'.profile__info-description'});
+const user = new UserInfo();
 
 const formValidEdit = new FormValidator(validationSettings, '.popup-edit');
 formValidEdit.enableValidation();
 
 const popupEdit = new PopupWithForm({selector:'.popup-edit', handleFormSubmit: (popupData) => {
-  console.log(popupData['name-input']);
   user.setUserInfo({name:popupData['name-input'], desc:popupData['description-input']});
   popupEdit.close();
 }, formReset: () => {
@@ -30,17 +31,23 @@ const popupEdit = new PopupWithForm({selector:'.popup-edit', handleFormSubmit: (
 
 popupEdit.setEventListeners();
 
+const popupImg = new PopupWithImage( '.popup-image');
+popupImg.setEventListeners();
+
 function handleCardClick(){
-  const popupImg = new PopupWithImage({link:this._link, name:this._name}, '.popup-image');
-  popupImg.setEventListeners();
-  popupImg.open();
+  popupImg.open({link:this._link, name:this._name});
+}
+
+function createCard(data) {
+  const card = new Card(data, '#element-template', handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement;
 }
 
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '#element-template', handleCardClick);
-    const cardElement = card.generateCard();
+    const cardElement = createCard(item);
     cardList.addItem(cardElement, 'append');
     },
   },
@@ -51,8 +58,7 @@ const formValidAdd = new FormValidator(validationSettings, '.popup-add');
 formValidAdd.enableValidation();
 
 const popupAdd = new PopupWithForm({selector:'.popup-add', handleFormSubmit:(popupData) => {
-  const card = new Card({name:popupData['popup-add-name'], link:popupData['popup-add-url']}, '#element-template', handleCardClick);
-  const cardElement = card.generateCard();
+  const cardElement = createCard({name:popupData['popup-add-name'], link:popupData['popup-add-url']});
   cardList.addItem(cardElement, 'prepend');
   popupAdd.close();
 }, formReset: () => {
@@ -62,13 +68,13 @@ const popupAdd = new PopupWithForm({selector:'.popup-add', handleFormSubmit:(pop
 popupAdd.setEventListeners();
 
 function openPopupEdit() {
-  popupEdit.setInputsInfo(user.getUserInfo());
-  formValidEdit.toggleButtonState();
+  ({name: userName.value, desc: userDesc.value} = user.getUserInfo());
+  formValidEdit.setButtonStateDisabled(true);
   popupEdit.open();
 }
 
 function openPopupAdd() {
-  formValidAdd.toggleButtonState();
+  formValidAdd.setButtonStateDisabled(true);
   popupAdd.open();
 }
 

@@ -28,6 +28,7 @@ export default class Card {
         .toggle('element__subtitle-like_active');
     }
     
+    
     _setEventListeners() {
         this._element.querySelector('.element__trash-button').addEventListener('click', () => {
             this._handleTrashButtonClick();

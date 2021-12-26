@@ -1,6 +1,5 @@
 export default class FormValidator {
     constructor(data, formSelector) {
-        console.log('валидация',formSelector);
         this._inputSelector = data.inputSelector;
         this._submitButtonSelector = data.submitButtonSelector;
         this._inactiveButtonClass = data.inactiveButtonClass;
@@ -39,12 +38,17 @@ export default class FormValidator {
             return !inputElement.validity.valid;
         })
     }
+
+    setButtonStateDisabled(isDisabled){
+        this._submitButton.disabled = isDisabled;
+        this._submitButton.classList.toggle(this._inactiveButtonClass, isDisabled);
+    }
       
     toggleButtonState() {
         const isFormInvalid = this._hasInvalidInput(this._inputList);
-        this._submitButton.disabled = isFormInvalid;
-        this._submitButton.classList.toggle(this._inactiveButtonClass, isFormInvalid);
-        console.log(isFormInvalid);
+        this.setButtonStateDisabled(isFormInvalid);
+        // this._submitButton.disabled = isFormInvalid;
+        // this._submitButton.classList.toggle(this._inactiveButtonClass, isFormInvalid);
     }
 
     _setEventListeners() {
