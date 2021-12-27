@@ -45,10 +45,9 @@ export default class FormValidator {
     }
       
     toggleButtonState() {
+        debugger;
         const isFormInvalid = this._hasInvalidInput(this._inputList);
         this.setButtonStateDisabled(isFormInvalid);
-        // this._submitButton.disabled = isFormInvalid;
-        // this._submitButton.classList.toggle(this._inactiveButtonClass, isFormInvalid);
     }
 
     _setEventListeners() {

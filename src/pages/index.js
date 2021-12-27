@@ -35,7 +35,7 @@ const popupImg = new PopupWithImage( '.popup-image');
 popupImg.setEventListeners();
 
 function handleCardClick(){
-  popupImg.open({link:this._link, name:this._name});
+  popupImg.open(this._name, this._link);
 }
 
 function createCard(data) {
@@ -82,6 +82,3 @@ editButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', openPopupAdd);
 
 cardList.renderItems();
-
-
-
