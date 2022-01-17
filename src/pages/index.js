@@ -120,11 +120,9 @@ api.getUser()
 
 function renderLoading(isLoading, button, initValue){
   if (isLoading){
-    debugger;
     button.textContent = 'Сохранение...'
   }
   else{
-    debugger;
     button.textContent = initValue;
   }
 }
