@@ -1,16 +1,5 @@
 .element__subtitle-like{
-  margin: 0;
-  padding: 0;
-  width: 22px;
-  height: 19px;
-  border: none;
-  background: transparent;
-  background-image: url(../../../images/like.svg);
-  cursor: pointer;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.element__subtitle-like:hover{
-  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -6,7 +6,7 @@
 }
 
 @media screen and (max-width: 767px){
-    .popup-edit__container {
+    .popup-image__container {
         width: 282px;
     }
 }

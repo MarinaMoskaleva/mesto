@@ -1,18 +1,13 @@
 .profile__avatar {
     border-radius: 50%;
     max-width: 120px;
-    height: auto;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
 }
 
-/* @media screen and (max-width: 1023px){
-    .header {
-        padding: 28px 24px 0;
-    }
+.profile__avatar:hover {
+    opacity: 0.8;
 }
 
 
-@media screen and (max-width: 767px){
-    .header {
-        padding: 16px 16px 0;
-    }
-} */
