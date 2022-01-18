@@ -1,26 +1,23 @@
-import {
-    currentUserName,
-    currentUserDesc,
-    currentUserAvatar
-} from '../utils/constants.js';
-
 export default class UserInfo {
-    constructor(){
+    constructor(name, desc, avatar){
         this._id = '0';
+        this._name = name;
+        this._desc = desc;
+        this._avatar = avatar;
     }
     
     getUserInfo(){
         this._user = {};
-        this._user['name'] = currentUserName.textContent;
-        this._user['desc'] = currentUserDesc.textContent;
-        this._user['avatar'] = currentUserAvatar.src;
+        this._user['name'] = this._name.textContent;
+        this._user['desc'] = this._desc.textContent;
+        this._user['avatar'] = this._avatar.src;
         return this._user;
     }
 
     setUserInfo({name, about, avatar, _id}){
-        currentUserName.textContent = name;
-        currentUserDesc.textContent = about;
-        currentUserAvatar.src = avatar;
+        this._name.textContent = name;
+        this._desc.textContent = about;
+        this._avatar.src = avatar;
         this._id = _id;
     }
 }
