@@ -20,12 +20,15 @@ import {
   popupEditElement, 
   popupAddElement,
   popupEditAvatarElement,
-  renderLoading,
-  getInitTextButton,
   currentUserName,
   currentUserDesc,
   currentUserAvatar
 } from '../utils/constants.js';
+
+import {
+  renderLoading,
+  getInitTextButton
+} from '../utils/utils.js';
 
 import './index.css';
 
@@ -68,7 +71,7 @@ function putCardLike(card){
   api.putLike(card._id)
   .then((result) => {
     card.changeLikeState(true);
-    card.setLikeCount(result.likes.length);
+    card.setLikeCount(result);
   })
   .catch((err) => {
     console.log(err);
@@ -79,7 +82,7 @@ function delCardLike(card){
   api.deleteLike(card._id)
   .then((result) => {
     card.changeLikeState(false);
-    card.setLikeCount(result.likes.length);
+    card.setLikeCount(result);
   })
   .catch((err) => {
     console.log(err);

@@ -27,17 +27,3 @@ export const token = '2d459150-8bd4-4d56-8e6d-2ecb47739abe';
 export const popupEditElement = document.querySelector('.popup-edit');
 export const popupAddElement = document.querySelector('.popup-add');
 export const popupEditAvatarElement = document.querySelector('.popup-edit-avatar');
-
-export function renderLoading(isLoading, popup, initText){
-  const button = popup.querySelector('.popup__button');
-  if (isLoading){
-    button.textContent = 'Сохранение...'
-  }
-  else{
-    button.textContent = initText;
-  }
-}
-
-export function getInitTextButton(popup){
-  return popup.querySelector('.popup__button').textContent;
-}

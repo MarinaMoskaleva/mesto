@@ -83,7 +83,7 @@ export default class Card {
         this._imageElement.src = this._link;
         this._imageElement.alt = this._name;
         this._titleElement.textContent = this._name;
-        this.setLikeCount(this._likes.length);
+        this._likeCountElement.textContent = this._likes.length;
         
         this._checkLike();
         return this._element;
@@ -98,19 +98,9 @@ export default class Card {
         this._likeButton
             .classList
             .toggle('element__subtitle-like-button_active', isActive);
-        // if (isActive) {
-        //     this._likeButton
-        //     .classList
-        //     .add('element__subtitle-like-button_active');
-        // }
-        // else {
-        //     this._likeButton
-        //     .classList
-        //     .remove('element__subtitle-like-button_active');
-        // }
     }
     
-    setLikeCount(count){
-        this._likeCountElement.textContent = count;
+    setLikeCount(data){
+        this._likeCountElement.textContent = data.likes.length;
     }
 }

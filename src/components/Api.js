@@ -17,7 +17,7 @@ export default class Api {
           authorization: this._token
         }
       })
-      .then(res => this._getResponseData(res));
+      .then(this._getResponseData);
     }
   
     getInitialCards() {
@@ -26,7 +26,7 @@ export default class Api {
                 authorization: this._token
             }
         })
-        .then(res => this._getResponseData(res));
+        .then(this._getResponseData);
     }
 
     patchUserData(newData) {
@@ -41,7 +41,7 @@ export default class Api {
               about: newData.about
             })
           })
-          .then(res => this._getResponseData(res));
+          .then(this._getResponseData);
     }
 
     postNewCard(data){
@@ -56,7 +56,7 @@ export default class Api {
               link: data.link
             })
           })
-          .then(res => this._getResponseData(res));
+          .then(this._getResponseData);
     }
 
     deleteCard(cardId){
@@ -67,7 +67,7 @@ export default class Api {
           'Content-Type': 'application/json'
         }
       })
-      .then(res => this._getResponseData(res));
+      .then(this._getResponseData);
     }
 
     putLike(cardId){
@@ -78,7 +78,7 @@ export default class Api {
           'Content-Type': 'application/json'
         }
       })
-      .then(res => this._getResponseData(res));
+      .then(this._getResponseData);
     }
 
     deleteLike(cardId){
@@ -89,7 +89,7 @@ export default class Api {
           'Content-Type': 'application/json'
         }
       })
-      .then(res => this._getResponseData(res));
+      .then(this._getResponseData);
     }
 
     patchAvatar(data){
@@ -103,6 +103,6 @@ export default class Api {
           avatar: data
         })
       })
-      .then(res => this._getResponseData(res));
+      .then(this._getResponseData);
     }
 }
