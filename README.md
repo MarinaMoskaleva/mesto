@@ -21,9 +21,7 @@
 - Api
 
 ### Инструкция для запуска
-```git clone https://github.com/MarinaMoskaleva/mesto.git```
-```cd mesto```
-```npm i webpack --save-dev```
-```npm run dev```
-```npm run build```
-
+- Клонируйте проект ```git clone https://github.com/MarinaMoskaleva/mesto.git```
+- Установите зависимости из package.json.
+- Для локального запуска введите команду ```npm run dev```.
+- Для сборки проекта введите команду ```npm run build```.
